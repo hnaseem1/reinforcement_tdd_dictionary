@@ -27,41 +27,41 @@ class TestDictionary < MiniTest::Test
     # refute asserts falsy, !assert
     refute @d.include?('fish')
   end
-
+  #
   def test_check_if_keyword_exists_after_add
     refute @d.include?('fish') # if the method is empty, this test passes
     @d.add('fish')
     assert @d.include?('fish') # confirms that it actually checks
     refute @d.include?('bird') # confirms not always returning true after add
   end
-
+  #
   def test_does_not_include_prefix
     @d.add('fish')
     refute @d.include?('fi')
   end
-
+  #
   def test_does_not_find_word_in_empty_dictionary
     assert_empty @d.find('fi')
   end
-
+  #
   def test_finds_nothing_if_prefix_matches_nothing
     @d.add('fiend')
     @d.add('great')
     assert_empty @d.find('nothing')
   end
-
+  #
   def test_finds_entry
     @d.add('fish' => 'aquatic animal')
     assert_equal({'fish' => 'aquatic animal'}, @d.find('fish'))
   end
-
+  #
   def test_finds_multiple_matches_from_prefix_and_returns_entire_entry
     @d.add('fish' => 'aquatic animal')
     @d.add('fiend' => 'wicked person')
     @d.add('great' => 'remarkable')
     assert_equal({'fish' => 'aquatic animal', 'fiend' => 'wicked person'}, @d.find('fi'))
   end
-
+  #
   def test_lists_words_alphabetically
     @d.add('zebra' => 'African land animal with stripes')
     @d.add('fish' => 'aquatic animal')
